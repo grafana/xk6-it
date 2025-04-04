@@ -3,11 +3,11 @@ _common_setup() {
 
   EXT_DIR="${BASEDIR}/ext"
   EXT_MOD=github.com/grafana/xk6-it/ext
-  EXT_VER=main
+  EXT_VER=latest
 
   IT_DIR=$BASEDIR
   IT_MOD=github.com/grafana/xk6-it
-  IT_VER=main
+  IT_VER=latest
 
   XK6=${XK6:-$(which xk6)}
   K6_VERSION=$(_k6_version)
