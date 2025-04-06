@@ -6,9 +6,9 @@ This repository contains xk6 integration tests and the test k6 extensions requir
 
 ## Usage
 
-The integration tests can be run immediately after cloning the repository (see [Tasks](#tasks) section).
+The preferred use of xk6-it is git cloning in a CI workflow. The integration tests can be run immediately after cloning the repository (see [Tasks](#tasks) section).
 
-It is recommended to embed this repository in the git repository that will use it. The most convenient way of embedding is to use [git-subrepo](https://github.com/ingydotnet/git-subrepo), but git subtree or git submodule can also be used.
+Another possible use is to embed this repository in the git repository that will use it. The most convenient way of embedding is to use [git-subrepo](https://github.com/ingydotnet/git-subrepo), but git subtree or git submodule can also be used.
 
 ### Prerequisites
 
