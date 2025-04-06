@@ -11,8 +11,6 @@ __help__:
 	@echo '  all      Run all'
 	@echo '  doc      Update documentation'
 	@echo '  it       Run the integration tests'
-	@echo '  it-build Run the integration tests of the build command'
-	@echo '  it-run   Run the integration tests of the run command'
 	@echo '  lint     Run the linter'
 	@echo '  makefile Generate the Makefile'
 	@echo '  test     Test the test extensions'
@@ -32,21 +30,7 @@ doc:
 .PHONY: it
 it: 
 	@(\
-		bats -r test;\
-	)
-
-# Run the integration tests of the build command
-.PHONY: it-build
-it-build: 
-	@(\
-		bats test/build.bats;\
-	)
-
-# Run the integration tests of the run command
-.PHONY: it-run
-it-run: 
-	@(\
-		bats test/run.bats;\
+		bats test;\
 	)
 
 # Run the linter

@@ -17,6 +17,46 @@ The following must be installed to run integration tests:
 - go toolkit
 - [Bats](https://bats-core.readthedocs.io/) (Bash Automated Testing System)
 
+### Run
+
+All integration tests can be run with a single command:
+
+```bash
+bats test
+```
+
+The output will be something like:
+
+```
+build.bats
+ ✓ ⚙ K6_VERSION=; XK6_K6_REPO=
+ ✓ no args
+ ✓ version arg
+ ✓ --k6-version version
+ ✓ K6_VERSION=version
+ ✓ --k6-repo module
+ ✓ XK6_K6_REPO=module
+ ✓ --output dir
+ ✓ -o dir
+ ✓ --with module
+ ✓ --with module=.
+ ✓ --with module=local
+ ✓ --with module=remote
+ ✓ --replace module=local
+ ✓ --replace module=remote
+ ✓ --with module1=local1 --with module2=local2 --with module3=local3
+run.bats
+ ✓ ⚙ K6_VERSION=; XK6_K6_REPO=
+ ✓ no arg
+ ✓ subdirectory
+ ✓ --with module=local
+ ✓ --with module
+special.bats
+ ✓ latest
+ ✓ master
+ ✓ hash
+```
+
 ### Configuration
 
 The tests can be configured with the following environment variables:
@@ -25,14 +65,23 @@ Variable          | Description
 ------------------|------------
 **`XK6`**         | The `xk6` tool to use. Default: `xk6` from the command search path.
 **`K6_VERSION`**  | The k6 version to use. Default: the latest GitHub release.
-**`K6_REPO`**     | The git repository to use in case of a fork. Default: empty, the official k6 repository will be used.
+**`XK6_K6_REPO`** | The git repository to use in case of a fork. Default: empty, the official k6 repository will be used.
 
-### Run
+### Filtering
 
-All integration tests can be run with a single command:
+Tests can be filtered by the following tags (using the bats `--filter-tags` flag):
+
+Tag                  | Description
+---------------------|------------
+**`xk6:build`**      | Tests for the `xk6 build` command.
+**`xk6:run`**        | Tests for the `xk6 run` command.
+**`xk6:non-semver`** | Tests for special, non-semver compatible k6 versions.
+**`xk6:smoke`**      | Tests for quick verification.
+
+Detailed filtering can be achieved by combining the above tags. For example, selecting all smoke tests except smoke tests for the `xk6 run` command:
 
 ```bash
-bats -r test
+bats --filter-tags 'xk6:smoke,!xk6:run' test
 ```
 
 ## Tasks
@@ -68,30 +117,10 @@ make makefile
 The `bats` tool is used to run the integration tests.
 
 ```bash
-bats -r test
+bats test
 ```
 
 [it]: <#test---run-the-integration-tests>
-
-### it-run - Run the integration tests of the run command
-
-The `bats` tool is used to run the integration tests for `xk6 run` command only.
-
-```bash
-bats test/run.bats
-```
-
-[it-run]: <#it-run---run-the-integration-tests-of-the-run-command>
-
-### it-build - Run the integration tests of the build command
-
-The `bats` tool is used to run the integration tests for `xk6 build` command only.
-
-```bash
-bats test/build.bats
-```
-
-[it-build]: <#it-build---run-the-integration-tests-of-the-build-command>
 
 ### test - Test the test extensions
 

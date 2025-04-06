@@ -10,11 +10,17 @@ _common_setup() {
   IT_VER=latest
 
   XK6=${XK6:-$(which xk6)}
-  K6_VERSION=$(_k6_version)
-
-  if $XK6 build --with 2>&1 | grep -q "build error parsing options expected value after --with flag"; then
-    XK6_LEGACY=true
+  if [ ! -x "$XK6" ]; then
+    echo "ERROR: Missing xk6, try to set XK6 environment variable." >&2
+    exit 2
   fi
+
+  K6_VERSION=$(_k6_version)
+  K6_LATEST_VERSION=$(_latest_k6_version)
+  K6_OTHER_VERSION=v0.57.0
+  K6_ORHER_VERSION_HASH=50afd82c18d5a66f4b2bfd1f8d266218bfdeaede
+
+  export K6=${BATS_TEST_TMPDIR}/k6
 }
 
 _k6_version() {
@@ -30,8 +36,9 @@ _latest_k6_version() {
   echo -n "v${url##*v}"
 }
 
+# TODO remove after merging https://github.com/grafana/xk6/pull/167
 check_xk6_version() {
-  if [[ $XK6_LEGACY ]]; then
+  if $XK6 build --with 2>&1 | grep -q "build error parsing options expected value after --with flag"; then
     skip "unsupported xk6 version"
   fi
 }
