@@ -3,11 +3,11 @@ _common_setup() {
 
   EXT_DIR="${BASEDIR}/ext"
   EXT_MOD=github.com/grafana/xk6-it/ext
-  EXT_VER=latest
+  EXT_VER=v0.1.2
 
   IT_DIR=$BASEDIR
   IT_MOD=github.com/grafana/xk6-it
-  IT_VER=latest
+  IT_VER=v0.1.2
 
   XK6=${XK6:-$(which xk6)}
   if [ ! -x "$XK6" ]; then
