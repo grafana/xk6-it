@@ -6,7 +6,7 @@ setup() {
   cd $BASEDIR
 }
 
-@test '⚙ K6_VERSION=$K6_VERSION; XK6_K6_REPO=$XK6_K6_REPO' {}
+@test '⚙ $(basename $BATS_TEST_FILENAME) K6_VERSION=$K6_VERSION; XK6_K6_REPO=$XK6_K6_REPO' {}
 
 # bats test_tags=xk6:run,xk6:smoke
 @test 'no arg' {

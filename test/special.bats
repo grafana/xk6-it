@@ -19,6 +19,8 @@ _test_k6_with_version() {
   fi
 }
 
+@test '⚙ $(basename $BATS_TEST_FILENAME) XK6_K6_REPO=$XK6_K6_REPO' {}
+
 # bats test_tags=xk6:non-semver,xk6:build,xk6:smoke
 @test 'latest' {
   _test_k6_with_version latest $K6_LATEST_VERSION
