@@ -20,7 +20,9 @@ _common_setup() {
   K6_OTHER_VERSION=v0.57.0
   K6_ORHER_VERSION_HASH=50afd82c18d5a66f4b2bfd1f8d266218bfdeaede
 
-  export K6=${BATS_TEST_TMPDIR}/k6
+  EXE_SUFFIX=$(_exe_suffix)
+
+  export K6=${BATS_TEST_TMPDIR}/k6${EXE_SUFFIX}
 }
 
 _k6_version() {
@@ -32,8 +34,23 @@ _k6_version() {
 }
 
 _latest_k6_version() {
-  url=$(wget -q -O - --spider -S "https://github.com/grafana/k6/releases/latest" 2>&1 | grep Location)
-  echo -n "v${url##*v}"
+  local url=$(curl -s -I https://github.com/grafana/k6/releases/latest | grep -i location)
+  local version="${url##*v}"
+  version=${version//[[:space:]]/}
+  echo -n "v${version}"
+}
+
+_exe_suffix() {
+  if ! uname >/dev/null 2>/dev/null; then
+    echo -n ".exe"
+    return
+  fi
+
+  case "$(uname)" in
+  CYGWIN* | MINGW* | MINGW32* | MSYS*)
+    echo -n ".exe"
+    ;;
+  esac
 }
 
 # TODO remove after merging https://github.com/grafana/xk6/pull/167
