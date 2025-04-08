@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create tags
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          for file in $(ls ext/*/go.mod); do
+            dir=$(dirname $file)
+            git tag -a -m "${{github.ref_name}}" "${dir}/${{github.ref_name}}"
+          done
+          git push --tags
