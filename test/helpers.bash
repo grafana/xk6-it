@@ -1,6 +1,8 @@
 _common_setup() {
   BASEDIR=$(dirname $BATS_TEST_DIRNAME)
 
+  EXE_SUFFIX=$(_exe_suffix)
+
   IT_DIR=$BASEDIR
   IT_MOD=github.com/grafana/xk6-it
   IT_VER=$(_latest_it_version)
@@ -9,7 +11,11 @@ _common_setup() {
   EXT_MOD=github.com/grafana/xk6-it/ext
   EXT_VER=${IT_VER}
 
-  XK6=${XK6:-$(which xk6)}
+  XK6=${XK6:-${BASEDIR}/xk6${EXE_SUFFIX}}
+  if [ ! -x "$XK6" ]; then
+    XK6="$(which xk6${EXE_SUFFIX})"
+  fi
+
   if [ ! -x "$XK6" ]; then
     echo "ERROR: Missing xk6, try to set XK6 environment variable." >&2
     exit 2
@@ -19,8 +25,6 @@ _common_setup() {
   K6_LATEST_VERSION=$(_latest_k6_version)
   K6_OTHER_VERSION=v0.57.0
   K6_ORHER_VERSION_HASH=50afd82c18d5a66f4b2bfd1f8d266218bfdeaede
-
-  EXE_SUFFIX=$(_exe_suffix)
 
   export K6=${BATS_TEST_TMPDIR}/k6${EXE_SUFFIX}
 }
