@@ -1,5 +1,5 @@
 _common_setup() {
-  BASEDIR=$(dirname $BATS_TEST_DIRNAME)
+  BASEDIR=$(_get_basedir)
 
   EXE_SUFFIX=$(_exe_suffix)
 
@@ -27,6 +27,11 @@ _common_setup() {
   K6_ORHER_VERSION_HASH=50afd82c18d5a66f4b2bfd1f8d266218bfdeaede
 
   export K6=${BATS_TEST_TMPDIR}/k6${EXE_SUFFIX}
+}
+
+_get_basedir() {
+  cd $BATS_TEST_DIRNAME
+  git rev-parse --show-toplevel
 }
 
 _k6_version() {
