@@ -1,13 +1,13 @@
 _common_setup() {
   BASEDIR=$(dirname $BATS_TEST_DIRNAME)
 
-  EXT_DIR="${BASEDIR}/ext"
-  EXT_MOD=github.com/grafana/xk6-it/ext
-  EXT_VER=v0.1.3
-
   IT_DIR=$BASEDIR
   IT_MOD=github.com/grafana/xk6-it
-  IT_VER=v0.1.3
+  IT_VER=$(_latest_it_version)
+
+  EXT_DIR="${BASEDIR}/ext"
+  EXT_MOD=github.com/grafana/xk6-it/ext
+  EXT_VER=${IT_VER}
 
   XK6=${XK6:-$(which xk6)}
   if [ ! -x "$XK6" ]; then
@@ -34,7 +34,15 @@ _k6_version() {
 }
 
 _latest_k6_version() {
-  local url=$(curl -s -I https://github.com/grafana/k6/releases/latest | grep -i location)
+  _get_latest_version "grafana/k6"
+}
+
+_latest_it_version() {
+  _get_latest_version "grafana/xk6-it"
+}
+
+_get_latest_version() {
+  local url=$(curl -s -I "https://github.com/$1/releases/latest" | grep -i location)
   local version="${url##*v}"
   version=${version//[[:space:]]/}
   echo -n "v${version}"
