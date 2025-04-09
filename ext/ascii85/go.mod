@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	github.com/grafana/sobek v0.0.0-20250320150027-203dc85b6d98
-	go.k6.io/k6 v0.57.0
+	go.k6.io/k6 v0.58.0
 )
 
 require (

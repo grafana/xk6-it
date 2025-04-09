@@ -2,7 +2,7 @@ module github.com/grafana/xk6-it/ext/sha512
 
 go 1.23.0
 
-require go.k6.io/k6 v0.57.0
+require go.k6.io/k6 v0.58.0
 
 require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
