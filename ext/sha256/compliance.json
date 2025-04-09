@@ -1,0 +1,67 @@
+{
+  "checks": [
+    {
+      "details": "no issues found",
+      "id": "security",
+      "passed": true
+    },
+    {
+      "details": "no issues found",
+      "id": "vulnerability",
+      "passed": true
+    },
+    {
+      "details": "found `github.com/grafana/xk6-it/ext/sha256` as go module",
+      "id": "module",
+      "passed": true
+    },
+    {
+      "details": "no `replace` directive in the `go.mod` file",
+      "id": "replace",
+      "passed": true
+    },
+    {
+      "details": "no README file found",
+      "id": "readme",
+      "passed": false
+    },
+    {
+      "details": "found `LICENSE` as `AGPL-3.0-or-later` license",
+      "id": "license",
+      "passed": true
+    },
+    {
+      "details": "error: repository does not exist",
+      "id": "git",
+      "passed": false
+    },
+    {
+      "details": "error: repository does not exist",
+      "id": "versions",
+      "passed": false
+    },
+    {
+      "details": "can be built with the latest k6 version",
+      "id": "build",
+      "passed": true
+    },
+    {
+      "details": "no smoke test file found",
+      "id": "smoke",
+      "passed": false
+    },
+    {
+      "details": "missing `examples` directory",
+      "id": "examples",
+      "passed": false
+    },
+    {
+      "details": "no `index.d.ts` file found",
+      "id": "types",
+      "passed": false
+    }
+  ],
+  "grade": "E",
+  "level": 45,
+  "timestamp": 1744210351
+}
