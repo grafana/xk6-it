@@ -4,6 +4,11 @@
 
 This repository contains xk6 integration tests and the test k6 extensions required for them.
 
+>[!CAUTION]
+> **xk6 internal**
+>
+> The k6 extensions in this repository are used for xk6 integration testing. These extensions are not intended for end users.
+
 ## Usage
 
 The preferred use of xk6-it is git cloning in a CI workflow. The integration tests can be run immediately after cloning the repository (see [Tasks](#tasks) section).
@@ -16,6 +21,8 @@ The following must be installed to run integration tests:
 - xk6
 - go toolkit
 - [Bats](https://bats-core.readthedocs.io/) (Bash Automated Testing System)
+- [jq](https://github.com/jqlang/jq) (Command-line JSON processor)
+- [jd](https://github.com/josephburnett/jd) (JSON diff and patch)
 
 ### Run
 
@@ -28,8 +35,8 @@ bats test
 The output will be something like:
 
 ```
-build.bats
- ✓ ⚙ K6_VERSION=; XK6_K6_REPO=
+test/build.bats
+ ✓ ⚙ build.bats K6_VERSION=; XK6_K6_REPO=
  ✓ no args
  ✓ version arg
  ✓ --k6-version version
@@ -45,13 +52,25 @@ build.bats
  ✓ --replace module=local
  ✓ --replace module=remote
  ✓ --with module1=local1 --with module2=local2 --with module3=local3
-run.bats
- ✓ ⚙ K6_VERSION=; XK6_K6_REPO=
+test/lint.bats
+ ✓ ⚙ lint.bats K6_VERSION=; XK6_K6_REPO=
+ ✓ it
+ ✓ base32
+ ✓ ascii85
+ ✓ base64-as-base32
+ ✓ base64
+ ✓ crc32
+ ✓ sha1
+ ✓ sha256
+ ✓ sha512
+test/run.bats
+ ✓ ⚙ run.bats K6_VERSION=; XK6_K6_REPO=
  ✓ no arg
  ✓ subdirectory
  ✓ --with module=local
  ✓ --with module
-special.bats
+test/special.bats
+ ✓ ⚙ special.bats XK6_K6_REPO=
  ✓ latest
  ✓ master
  ✓ hash
@@ -75,6 +94,7 @@ Tag                  | Description
 ---------------------|------------
 **`xk6:build`**      | Tests for the `xk6 build` command.
 **`xk6:run`**        | Tests for the `xk6 run` command.
+**`xk6:lint`**       | Tests for the `xk6 lint` command.
 **`xk6:non-semver`** | Tests for special, non-semver compatible k6 versions.
 **`xk6:smoke`**      | Tests for quick verification.
 
@@ -132,6 +152,19 @@ bats -r ext
 
 [test]: <#test---test-the-test-extensions>
 
+### security - Run security and vulnerability checks
+
+The [gosec] tool is used for security checks. The [govulncheck] tool is used to check the vulnerability of dependencies.
+
+```bash
+gosec -quiet ./...
+govulncheck ./...
+```
+
+[gosec]: https://github.com/securego/gosec
+[govulncheck]: https://github.com/golang/vuln
+[security]: <#security---run-security-and-vulnerability-checks>
+
 ### lint - Run the linter
 
 The [golangci-lint] tool is used for static analysis of the source code. It is advisable to run it before committing the changes.
@@ -166,7 +199,7 @@ cdo --makefile Makefile
 Performs the most important tasks. It can be used to check whether the CI workflow will run successfully.
 
 Requires
-: [lint], [test], [it], [doc], [makefile]
+: [lint], [security], [test], [it], [doc], [makefile]
 
 ## Development Environment
 

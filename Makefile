@@ -13,11 +13,12 @@ __help__:
 	@echo '  it       Run the integration tests'
 	@echo '  lint     Run the linter'
 	@echo '  makefile Generate the Makefile'
+	@echo '  security Run security and vulnerability checks'
 	@echo '  test     Test the test extensions'
 
 # Run all
 .PHONY: all
-all: lint test it doc makefile
+all: lint security test it doc makefile
 
 # Update documentation
 .PHONY: doc
@@ -45,6 +46,14 @@ lint:
 makefile: 
 	@(\
 		cdo --makefile Makefile;\
+	)
+
+# Run security and vulnerability checks
+.PHONY: security
+security: 
+	@(\
+		gosec -quiet ./...;\
+		govulncheck ./...;\
 	)
 
 # Test the test extensions

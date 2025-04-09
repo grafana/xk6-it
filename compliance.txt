@@ -1,0 +1,31 @@
+k6 extension compliance
+──────────┬─────────────
+ grade  A │ level  100% 
+
+Details
+───────
+✔ security            
+  no issues found
+✔ vulnerability       
+  no issues found
+✔ module              
+  found `github.com/grafana/xk6-it` as go module
+✔ replace             
+  no `replace` directive in the `go.mod` file
+✔ readme              
+  found `README.md` as README file
+✔ license             
+  found `LICENSE` as `AGPL-3.0-only` license
+✔ git                 
+  found git worktree
+✔ versions            
+  found `7` versions, the latest is `v0.1.6`
+✔ build               
+  can be built with the latest k6 version
+✔ smoke               
+  `smoke.js` successfully run with k6
+✔ examples            
+  found `examples` as examples directory
+✔ types               
+  found `index.d.ts` file
+
