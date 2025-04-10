@@ -39,7 +39,7 @@ golden_test() {
 
   cat $golden | diffable >$want
 
-  jd $want $got
+  diff $want $got
 }
 
 # bats test_tags=xk6:lint,xk6:smoke

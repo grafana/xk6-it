@@ -40,7 +40,6 @@
   },
 
   "postCreateCommand": {
-    "jq": "eget -t 1.7.1 -a linux64 --to=/go/bin/ jqlang/jq",
-    "jd": "eget -t v2.2.2 --to=/go/bin/ josephburnett/jd"
+    "jq": "eget -t 1.7.1 -a linux64 --to=/go/bin/ jqlang/jq"
   }
 }

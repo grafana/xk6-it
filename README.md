@@ -22,7 +22,6 @@ The following must be installed to run integration tests:
 - go toolkit
 - [Bats](https://bats-core.readthedocs.io/) (Bash Automated Testing System)
 - [jq](https://github.com/jqlang/jq) (Command-line JSON processor)
-- [jd](https://github.com/josephburnett/jd) (JSON diff and patch)
 
 ### Run
 
