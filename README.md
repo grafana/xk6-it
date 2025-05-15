@@ -94,6 +94,8 @@ Tag                  | Description
 **`xk6:build`**      | Tests for the `xk6 build` command.
 **`xk6:run`**        | Tests for the `xk6 run` command.
 **`xk6:lint`**       | Tests for the `xk6 lint` command.
+**`xk6:new`**        | Tests for the `xk6 new` command.
+**`xk6:adjust`**     | Tests for the `xk6 adjust` command.
 **`xk6:non-semver`** | Tests for special, non-semver compatible k6 versions.
 **`xk6:smoke`**      | Tests for quick verification.
 
