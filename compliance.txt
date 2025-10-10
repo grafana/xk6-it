@@ -1,9 +1,5 @@
 k6 extension compliance
-──────────┬─────────────
- grade  A │ level  100% 
 
-Details
-───────
 ✔ security            
   no issues found
 ✔ vulnerability       
