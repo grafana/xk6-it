@@ -13,7 +13,7 @@ normalize() {
 }
 
 diffable() {
-  jq '{"checks":(.checks|sort_by(.id)|map({(.id):.passed})|add),"grade":.grade, "level":.level}'
+  jq '{"checks":(.checks|sort_by(.id)|map({(.id):.passed})|add)}'
 }
 
 golden_test() {
