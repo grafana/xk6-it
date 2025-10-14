@@ -11,11 +11,11 @@ k6 extension compliance
 ✔ readme              
   found `README.md` as README file
 ✔ license             
-  found `LICENSE` as `AGPL-3.0-only` license
+  found `LICENSE` as `AGPL-3.0-or-later` license
 ✔ git                 
   found git worktree
 ✔ versions            
-  found `7` versions, the latest is `v0.1.6`
+  found `11` versions, the latest is `v1.0.0`
 ✔ build               
   can be built with the latest k6 version
 ✔ smoke               

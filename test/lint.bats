@@ -26,14 +26,14 @@ golden_test() {
   local want=$BATS_TEST_TMPDIR/want.json
 
   if [ ! -f $golden ]; then
-    $XK6 lint --json $dir >$golden
+    $XK6 lint --preset strict --json $dir >$golden
 
     if [ -z "$1" ]; then
-      $XK6 lint -o $goldentxt $dir || true
+      $XK6 lint --preset strict -o $goldentxt $dir || true
     fi
   fi
 
-  run $XK6 lint --json $dir
+  run $XK6 lint --preset strict --json $dir
   [ $status -eq 0 ]
   echo "$output" | diffable >$got
 
