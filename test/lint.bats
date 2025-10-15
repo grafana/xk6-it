@@ -1,6 +1,7 @@
 #!/usr/bin/env bats
 
 setup() {
+  bats_require_minimum_version 1.5.0
   load helpers
   _common_setup
   cd $BATS_TEST_TMPDIR
@@ -33,8 +34,7 @@ golden_test() {
     fi
   fi
 
-  run $XK6 lint --preset strict --json $dir
-  [ $status -eq 0 ]
+  run --separate-stderr $XK6 lint --preset strict --json $dir
   echo "$output" | diffable >$got
 
   cat $golden | diffable >$want
