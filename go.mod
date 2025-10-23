@@ -2,7 +2,7 @@ module github.com/grafana/xk6-it
 
 go 1.23.0
 
-toolchain go1.23.8
+toolchain go1.25.3
 
 require (
 	github.com/grafana/sobek v0.0.0-20250723111835-dd8a13f0d439
