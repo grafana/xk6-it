@@ -19,7 +19,7 @@ _common_setup() {
     fi
   fi
 
-  if [ ! -x "$XK6" ]; then
+  if [ -z "$XK6" ]; then
     echo "ERROR: Missing xk6, try to set XK6 environment variable." >&2
     exit 2
   fi
