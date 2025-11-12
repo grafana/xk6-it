@@ -11,12 +11,15 @@ _common_setup() {
   EXT_MOD=github.com/grafana/xk6-it/ext
   EXT_VER=${IT_VER}
 
-  XK6=${XK6:-${BASEDIR}/xk6${EXE_SUFFIX}}
-  if [ ! -x "$XK6" ]; then
-    XK6="$(which xk6${EXE_SUFFIX})"
+  if [ -z "$XK6" ]; then
+    if [ -x "${BASEDIR}/xk6${EXE_SUFFIX}" ]; then
+      XK6="${BASEDIR}/xk6${EXE_SUFFIX}"
+    else
+      XK6="$(which xk6${EXE_SUFFIX} 2>/dev/null || true)"
+    fi
   fi
 
-  if [ ! -x "$XK6" ]; then
+  if [ -z "$XK6" ]; then
     echo "ERROR: Missing xk6, try to set XK6 environment variable." >&2
     exit 2
   fi
