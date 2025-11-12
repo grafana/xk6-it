@@ -24,7 +24,7 @@ setup() {
 
 # bats test_tags=xk6:version,xk6:smoke,xk6:liveness
 @test 'specific version: $XK6_VERSION' {
-  if [[ ! -v "XK6_VERSION" ]]; then
+  if [[ -z "$XK6_VERSION" ]]; then
     skip "XK6_VERSION is not set"
   fi
 
