@@ -3,7 +3,7 @@ module github.com/grafana/xk6-it/ext/base32
 go 1.23.0
 
 require (
-	github.com/grafana/sobek v0.0.0-20251103154147-6b40183f38e5
+	github.com/grafana/sobek v0.0.0-20251113105955-976a34df9c09
 	go.k6.io/k6 v1.3.0
 )
 
