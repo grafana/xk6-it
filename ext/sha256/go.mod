@@ -1,8 +1,6 @@
 module github.com/grafana/xk6-it/ext/sha256
 
-go 1.24.0
-
-toolchain go1.24.11
+go 1.25
 
 require go.k6.io/k6 v1.4.2
 
