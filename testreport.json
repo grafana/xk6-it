@@ -1,0 +1,81 @@
+{
+  "reportFormat": "CTRF",
+  "specVersion": "0.0.0",
+  "reportId": "0ef500ac-c2f3-4a12-b45e-54ff05036f50",
+  "timestamp": "2025-12-03T10:11:22.657999365Z",
+  "generatedBy": "xk6",
+  "results": {
+    "tool": {
+      "name": "xk6",
+      "version": "1.2.7-next+1f03aa1.dirty"
+    },
+    "summary": {
+      "tests": 9,
+      "passed": 7,
+      "failed": 2,
+      "pending": 0,
+      "skipped": 0,
+      "other": 0,
+      "start": 0,
+      "stop": 0
+    },
+    "tests": [
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 24,
+        "filePath": "ext/ascii85/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 23,
+        "filePath": "ext/base32/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "failed",
+        "duration": 0,
+        "message": "Thresholds have failed",
+        "filePath": "ext/base64-as-base32/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 22,
+        "filePath": "ext/base64/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 21,
+        "filePath": "ext/crc32/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 23,
+        "filePath": "ext/sha1/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 26,
+        "filePath": "ext/sha256/script.js"
+      },
+      {
+        "name": "script.js",
+        "status": "passed",
+        "duration": 22,
+        "filePath": "ext/sha512/script.js"
+      },
+      {
+        "name": "test.js",
+        "status": "failed",
+        "duration": 0,
+        "message": "test aborted: \n\n   Error: \u001b[90mexpect(\u001b[0m\u001b[31mreceived\u001b[0m\u001b[90m).\u001b[0m\u001b[37mtoBe\u001b[0m\u001b[90m(\u001b[0m\u001b[32mexpected\u001b[0m\u001b[90m)\u001b[0m\n      At: \u001b[90m/workspaces/xk6/it/test.js:10:23\u001b[0m\n\nExpected: \u001b[32m{}\u001b[0m\nReceived: \u001b[31m{}\u001b[0m\n\nFilename: \u001b[90mtest.js\u001b[0m\n    Line: \u001b[90m10\u001b[0m\n\n at O (https://jslib.k6.io/k6-testing/assert.ts:54:20(32))",
+        "filePath": "test.js"
+      }
+    ]
+  }
+}
