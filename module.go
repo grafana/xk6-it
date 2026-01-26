@@ -14,14 +14,18 @@ import (
 	"reflect"
 
 	"github.com/grafana/sobek"
+	"github.com/spf13/cobra"
+	"go.k6.io/k6/cmd/state"
 	"go.k6.io/k6/js/modules"
 	"go.k6.io/k6/metrics"
 	"go.k6.io/k6/output"
+	"go.k6.io/k6/subcommand"
 )
 
 func init() { //nolint:gochecknoinits
 	modules.Register("k6/x/it", new(rootModule))
 	output.RegisterExtension("it", newOutput)
+	subcommand.RegisterExtension("it", newSubcommand)
 }
 
 type rootModule struct{}
@@ -157,4 +161,26 @@ func (o *out) Stop() error {
 	}
 
 	return json.NewEncoder(o.writer).Encode(names)
+}
+
+func newSubcommand(_ *state.GlobalState) *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "it",
+		Short: "k6 integration test helper subcommand",
+		Long: `Helper subcommand for k6 integration tests.
+
+This subcommand is part of the "k6/x/it" extension and is intended to
+assist with integration testing of k6 itself. It provides functionality
+that can be utilized in test scenarios.
+
+This command simply echoes its arguments as a JSON array to stdout.
+`,
+		Example: "  k6 x it arg1 arg2 'arg 3'",
+	}
+
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		return json.NewEncoder(cmd.OutOrStdout()).Encode(args)
+	}
+
+	return cmd
 }

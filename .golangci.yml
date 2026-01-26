@@ -18,6 +18,9 @@ linters:
     # Except for general-purpose public APIs,
     # wrapping errors is more inconvenient and error prone than useful.
     - wrapcheck
+
+    # Disable depreated linters
+    - wsl
   settings:
     depguard:
       rules:
@@ -28,6 +31,7 @@ linters:
             - github.com/stretchr/testify/require
             - go.k6.io/k6
             - github.com/grafana/sobek
+            - github.com/spf13/cobra
 issues:
   max-issues-per-linter: 0
   max-same-issues: 0
