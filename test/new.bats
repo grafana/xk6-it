@@ -54,6 +54,19 @@ check_xk6_new() {
 }
 
 # bats test_tags=xk6:new
+@test '--type subcommand' {
+  run $XK6 new --type subcommand --description no-such-string example.com/user/xk6-demo
+  [ $status -eq 0 ]
+  cd xk6-demo
+  grep -q "package demo" *.go
+  grep -q no-such-string README.md
+  run $XK6 build --with example.com/user/xk6-demo=.
+  [ $status -eq 0 ]
+  echo "$output" | grep -q "xk6 has now produced a new k6 binary"
+  ./k6 version | grep -q "example.com/user/xk6-demo.*subcommand"
+}
+
+# bats test_tags=xk6:new
 @test '--package wonderland' {
   run $XK6 new --package wonderland example.com/user/xk6-demo
   [ $status -eq 0 ]

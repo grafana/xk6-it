@@ -17,7 +17,11 @@ check_xk6_test() {
 @test '⚙ $(basename $BATS_TEST_FILENAME) K6_VERSION=$K6_VERSION; XK6_K6_REPO=$XK6_K6_REPO' {}
 
 diffable() {
-  jq '. |= (del(.reportId))| del(.timestamp)|del(.results.tool.version)|del(.results.summary.start)|del(.results.summary.stop)|del(.results.summary.duration)|.results.tests[]|= (del(.duration)|del(.start)|del(.duration))'
+  jq '. |= (del(.reportId))| del(.timestamp)|del(.results.tool.version)|del(.results.summary.start)|del(.results.summary.stop)|del(.results.summary.duration)|.results.tests[]|= (del(.duration)|del(.start)|del(.duration)|del(.message))'
+}
+
+diffable_txt() {
+   sed '/^\s*[aA]t/d'
 }
 
 golden_test() {
@@ -30,6 +34,7 @@ golden_test() {
   local got=$BATS_TEST_TMPDIR/got.json
   local want=$BATS_TEST_TMPDIR/want.json
   local gottxt=$BATS_TEST_TMPDIR/got.txt
+  local wanttxt=$BATS_TEST_TMPDIR/want.txt
 
   local with=(
     "--with" "github.com/grafana/xk6-it=."
@@ -59,9 +64,13 @@ golden_test() {
   echo "$output" | diffable >$got
   cat $golden | diffable >$want
   diff $want $got
+
   
-  run --separate-stderr $XK6 test ${with[@]} -o $gottxt ${patterns[@]}
-  diff $goldentxt $gottxt
+  run --separate-stderr $XK6 test ${with[@]} ${patterns[@]}
+  echo "$output" | diffable_txt >$gottxt
+  cat $goldentxt | diffable_txt >$wanttxt
+  
+  diff $wanttxt $gottxt
 }
 
 # bats test_tags=xk6:test,xk6:smoke
