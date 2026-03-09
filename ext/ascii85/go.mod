@@ -3,7 +3,7 @@ module github.com/grafana/xk6-it/ext/ascii85
 go 1.25
 
 require (
-	github.com/grafana/sobek v0.0.0-20260121195222-d8d9202018c5
+	github.com/grafana/sobek v0.0.0-20260309140132-c198b3f43d96
 	go.k6.io/k6 v1.5.0
 )
 
