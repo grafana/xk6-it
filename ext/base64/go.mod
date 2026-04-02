@@ -1,10 +1,10 @@
 module github.com/grafana/xk6-it/ext/base64
 
-go 1.25
+go 1.25.0
 
 require (
-	github.com/grafana/sobek v0.0.0-20260121195222-d8d9202018c5
-	go.k6.io/k6 v1.6.1
+	github.com/grafana/sobek v0.0.0-20260219184149-bdae4a158e94
+	go.k6.io/k6 v1.7.1
 )
 
 require (
