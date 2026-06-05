@@ -15,11 +15,11 @@ import (
 
 	"github.com/grafana/sobek"
 	"github.com/spf13/cobra"
-	"go.k6.io/k6/cmd/state"
-	"go.k6.io/k6/js/modules"
-	"go.k6.io/k6/metrics"
-	"go.k6.io/k6/output"
-	"go.k6.io/k6/subcommand"
+	"go.k6.io/k6/v2/cmd/state"
+	"go.k6.io/k6/v2/js/modules"
+	"go.k6.io/k6/v2/metrics"
+	"go.k6.io/k6/v2/output"
+	"go.k6.io/k6/v2/subcommand"
 )
 
 func init() { //nolint:gochecknoinits
