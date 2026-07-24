@@ -2,7 +2,7 @@ module github.com/grafana/xk6-it/ext/sha1
 
 go 1.25.0
 
-toolchain go1.25.11
+toolchain go1.25.12
 
 require go.k6.io/k6/v2 v2.0.0
 
