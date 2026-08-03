@@ -3,5 +3,27 @@
   "extends": [
     "github>grafana/grafana-renovate-config//presets/k6/k6-engine-base.json",
     "github>grafana/grafana-renovate-config//presets/k6/k6-engine-automerge.json"
+  ],
+  "packageRules": [
+    {
+      "description": "Ignore indirect Go dependencies for now (inherited transitively from go.k6.io/k6, not used by the fixtures themselves)",
+      "matchManagers": ["gomod"],
+      "matchDepTypes": ["indirect"],
+      "enabled": false
+    },
+    {
+      "description": "One weekly PR for the Go toolchain directive across every module",
+      "matchManagers": ["gomod"],
+      "matchDepTypes": ["golang", "toolchain"],
+      "groupName": "go toolchain",
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "description": "Group the direct deps that always move in lockstep across all modules",
+      "matchManagers": ["gomod"],
+      "matchDepTypes": ["require"],
+      "groupName": "k6 core dependencies",
+      "schedule": ["before 6am on monday"]
+    }
   ]
 }
