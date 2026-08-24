@@ -2,7 +2,7 @@ module github.com/grafana/xk6-it/ext/ascii85
 
 go 1.25.0
 
-toolchain go1.25.13
+toolchain go1.25.14
 
 require (
 	github.com/grafana/sobek v0.0.0-20260727154728-7781506a890f
