@@ -169,10 +169,13 @@ govulncheck ./...
 
 ### lint - Run the linter
 
-The [golangci-lint] tool is used for static analysis of the source code. It is advisable to run it before committing the changes.
+The [golangci-lint] tool uses the shared configuration from the k6-ci version pinned in the workflow.
+It is advisable to run it before committing changes.
 
 ```bash
-golangci-lint run ./...
+K6_CI_REF=$(grep -oE 'grafana/k6-ci/[^@[:space:]]+@[A-Za-z0-9._/-]+' .github/workflows/k6-ci.yml | head -n1 | cut -d@ -f2)
+curl -fsSL "https://raw.githubusercontent.com/grafana/k6-ci/${K6_CI_REF}/.golangci.yml" -o .golangci.yml
+go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(head -n1 .golangci.yml | tr -d '# ') run --config=.golangci.yml ./...
 ```
 
 [lint]: <#lint---run-the-linter>
